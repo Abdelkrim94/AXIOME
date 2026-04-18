@@ -8,57 +8,26 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Josefin+Sans:wght@100;200;300&display=swap" rel="stylesheet" />
-  <script>
-  document.querySelector('.form-cta').addEventListener('click', async () => {
-    const nom    = document.getElementById('nom').value.trim();
-    const prenom = document.getElementById('prenom').value.trim();
-    const email  = document.getElementById('email').value.trim();
+</head>
 
-    if (!nom || !prenom || !email) {
-      alert('Merci de remplir tous les champs.');
-      return;
-    }
+<body>
 
-    const WEBHOOK_URL = 'https://hook.eu1.make.com/t7us2nruhw2gykcciefei9dlucmu1uaw';
-
-    try {
-      await fetch(WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nom, prenom, email })
-      });
-      alert('Inscription réussie ! Vous allez recevoir un email.');
-      // Réinitialiser les champs
-      document.getElementById('nom').value = '';
-      document.getElementById('prenom').value = '';
-      document.getElementById('email').value = '';
-    } catch (err) {
-      alert('Une erreur est survenue, veuillez réessayer.');
-    }
-  });
-</script>
-  <body>
- 
   <!-- ══════════════════ SECTION 1 — HERO ══════════════════ -->
   <section class="hero" id="accueil">
- 
+
     <!-- NAVBAR -->
     <nav class="navbar">
- 
       <a href="#" class="navbar__logo">
-  <img src="./PHOTO/Capture d'écran 2026-04-13 150748.png" class="navbar__logo-icon" alt="Axiom logo" />
-</a>
-        
- 
+        <img src="./PHOTO/Capture d'écran 2026-04-13 150748.png" class="navbar__logo-icon" alt="Axiom logo" />
+      </a>
       <ul class="navbar__links">
         <li><a href="#accueil">ACCEUIL</a></li>
         <li><a href="#pourquoi-nous">POURQUOI NOUS ?</a></li>
-        <li><a href="#reassurance">REASSURANCE </a></li>
+        <li><a href="#reassurance">REASSURANCE</a></li>
         <li><a href="#inscription">INSCRIPTION</a></li>
       </ul>
- 
     </nav>
- 
+
     <!-- CONTENU CENTRAL -->
     <div class="hero__content">
       <h1 class="hero__title">AXIOM</h1>
@@ -69,44 +38,72 @@
       </p>
       <a href="#inscription" class="hero__cta">RECEVOIR VOTRE PDF</a>
     </div>
- 
+
   </section>
- 
-  <!-- ══════════════════ SECTION 3 — IMAGE PLEIN ÉCRAN ══════════════════ -->
-<section class="image-section" id="pourquoi-nous" ></section>
-<section class="img-section" id="reassurance"></section>
 
+  <!-- ══════════════════ SECTION 2 — IMAGE PLEIN ÉCRAN ══════════════════ -->
+  <section class="image-section" id="pourquoi-nous"></section>
+  <section class="img-section" id="reassurance"></section>
 
-<section class="form-section" id="inscription" >
+  <!-- ══════════════════ SECTION 3 — FORMULAIRE ══════════════════ -->
+  <section class="form-section" id="inscription">
     <div class="form-card">
       <h2 class="form-title">Rejoindre L'Axiom</h2>
+
       <div class="form-group">
         <label class="form-label" for="nom">Nom</label>
         <input class="form-input" type="text" id="nom" placeholder="PROST" />
       </div>
- 
+
       <div class="form-group">
         <label class="form-label" for="prenom">Prénom</label>
         <input class="form-input" type="text" id="prenom" placeholder="MATHIEU" />
       </div>
- 
+
       <div class="form-group">
         <label class="form-label" for="email">Email</label>
         <input class="form-input" type="email" id="email" placeholder="mathieuprostlegoat@hetic.com" />
       </div>
- 
-      <button class="form-cta"> INSCRIPTION </button>
- 
+
+      <button class="form-cta">INSCRIPTION</button>
     </div>
   </section>
 
+  <!-- ══════════════════ FOOTER ══════════════════ -->
+  <footer class="footer">
+    <p class="footer__quote">"veritas nihil nisi veritas"</p>
+    <p class="footer__legal">© 2026 Axiom. Tous droits réservés.</p>
+  </footer>
 
+  <!-- ✅ SCRIPT ICI : après tout le HTML, le bouton existe déjà dans la page -->
+  <script>
+    document.querySelector('.form-cta').addEventListener('click', async () => {
+      const nom    = document.getElementById('nom').value.trim();
+      const prenom = document.getElementById('prenom').value.trim();
+      const email  = document.getElementById('email').value.trim();
 
-<!-- ══════════════════ FOOTER ══════════════════ -->
-<footer class="footer">
-  <p class="footer__quote">"veritas nihil nisi veritas"</p>
-  <p class="footer__legal">© 2026 Axiom. Tous droits réservés.</p>
-</footer>
- 
+      if (!nom || !prenom || !email) {
+        alert('Merci de remplir tous les champs.');
+        return;
+      }
+
+      const WEBHOOK_URL = 'https://hook.eu1.make.com/t7us2nruhw2gykcciefei9dlucmu1uaw';
+
+      try {
+        await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nom, prenom, email })
+        });
+        alert('Inscription réussie ! Vous allez recevoir un email.');
+        document.getElementById('nom').value = '';
+        document.getElementById('prenom').value = '';
+        document.getElementById('email').value = '';
+      } catch (err) {
+        alert('Une erreur est survenue, veuillez réessayer.');
+      }
+    });
+  </script>
+
 </body>
 </html>

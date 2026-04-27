@@ -20,13 +20,6 @@
       overflow-x: hidden;
     }
 
-    
-    
- 
-    /* ─────────────────────────────────────────
-       SECTION HERO — remplace l'url() par ton
-       export Figma pour le background
-    ───────────────────────────────────────── */
     .hero {
       position: relative;
       width: 100%;
@@ -36,13 +29,11 @@
       flex-direction: column;
       overflow: visible;
       padding-top: 78px;
-      /* ↓ REMPLACE ICI PAR TON IMAGE FIGMA */
       background-image: url('./PHOTO/FOND-AXIOME.jpeg');
       background-size: cover;
       background-position: center center;
     }
  
-    /* Léger voile sombre pour lisibilité du texte */
     .hero::after {
       content: '';
       position: absolute;
@@ -57,12 +48,6 @@
       z-index: 1;
     }
  
-
-
-
-
-    
-    /* ─── NAVBAR ─── */
     .navbar {
       display: flex;
       align-items: center;
@@ -305,8 +290,6 @@
       border-color: rgba(255,255,255,0.45);
     }
 
-
- /* Dégradé sortant du hero vers le bas */
 .hero::before {
   content: '';
   position: absolute;
@@ -319,7 +302,6 @@
   pointer-events: none;
 }
 
-/* Dégradé entrant dans la form-section par le haut */
 .form-section::before {
   content: '';
   position: absolute;
@@ -343,7 +325,6 @@
   background-color: #0a0a0a;
 }
 
-/* Fondu haut */
 .image-section::before {
   content: '';
   position: absolute;
@@ -354,25 +335,15 @@
   pointer-events: none;
 }
 
-/* Fondu côtés */
 .image-section::after {
   content: '';
   position: absolute;
   inset: 0;
   background: 
-    linear-gradient(to right, #0a0a0a 0%, transparent 8%, transparent 92%, #0a0a0a 100%),
     linear-gradient(to bottom, transparent 70%, #0a0a0a 100%);
   z-index: 1;
   pointer-events: none;
 }
-
-
-
-
-
-
-
-
 
 .img-section {
   position: relative;
@@ -384,7 +355,6 @@
   background-color: #0a0a0a;
 }
 
-/* Fondu haut */
 .img-section::before {
   content: '';
   position: absolute;
@@ -395,30 +365,15 @@
   pointer-events: none;
 }
 
-
-
-/* Fondu côtés */
 .img-section::after {
   content: '';
   position: absolute;
   inset: 0;
   background: 
-    linear-gradient(to right, #0a0a0a 0%, transparent 8%, transparent 92%, #0a0a0a 100%),
-    linear-gradient(to bottom, transparent 70%, #0a0a0a 100%);
+  linear-gradient(to bottom, transparent 70%, #0a0a0a 100%);
   z-index: 1;
   pointer-events: none;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 .footer {
   position: relative;
@@ -432,7 +387,6 @@
 
 }
 
-
 .footer__legal {
   font-family: var(--font-display);
   font-weight: 100;
@@ -441,7 +395,6 @@
   color: rgba(255, 255, 255, 0.25);
 }
 
-/* Ligne dorée décorative centrée */
 .footer::before {
   content: '';
   position: absolute;
@@ -453,22 +406,12 @@
   background: var(--gold);
 }
 
-/* Agrandir la card */
-.form-card {
-  max-width: 480px;
-  padding: 37px 52px 41px;
-  gap: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.18); /* bordure plus visible */
-}
-
-/* Inputs plus grands */
 .form-input {
   padding: 18px 20px;
   font-size: 15px;
   border-radius: 8px;
 }
 
-/* Bouton mis à jour */
 .form-cta {
   width: 60%;
   letter-spacing: 0.22em;
@@ -502,3 +445,180 @@
   text-align: center;
 }
 
+.navbar__burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 100;
+}
+
+.navbar__burger span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--white);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+
+.navbar__burger.open span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.navbar__burger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+
+.image-section__img {
+  display: none;
+}
+
+@media (max-width: 426px) {
+
+  .navbar {
+    padding: 12px 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar__burger {
+    display: flex;
+  }
+
+  .navbar__links {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(10, 8, 8, 0.96);
+    backdrop-filter: blur(32px);
+    -webkit-backdrop-filter: blur(32px);
+    justify-content: center;
+    z-index: 80;
+  }
+
+  .navbar__links.open {
+    display: flex;
+  }
+
+  .navbar__links a {
+    font-size: 16px;
+    letter-spacing: 0.2em;
+  }
+
+   .hero__content {
+    align-items: center;
+    text-align: center;
+    padding: 0 24px 60px;
+  }
+
+  .hero__title {
+    font-size: clamp(60px, 20vw, 90px);
+    letter-spacing: 0.05em;
+  }
+
+  .hero__quote {
+    font-size: 12px;
+    letter-spacing: 0.18em;
+  }
+
+  .hero__subtitle {
+    font-size: 15px;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .hero__cta {
+    width: 80%;
+    text-align: center;
+    padding: 16px 0;
+  }
+
+  .form-section {
+    padding: 40px 20px;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .form-card {
+    width: 100%;
+    padding: 32px 24px;
+    gap: 18px;
+  }
+
+  .form-title {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .form-input {
+    padding: 14px 16px;
+    font-size: 14px;
+  }
+
+  .form-cta {
+    width: 80%;
+    font-size: 11px;
+    padding: 16px 0;
+  }
+
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    padding: 20px 16px;
+  }
+
+  .footer__quote {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 13px;
+  }
+
+  .footer__logo-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .footer__legal {
+    font-size: 10px;
+  }
+
+  .img-section {
+    background-image: url('./PHOTO/iPhone\ 17\ -\ 3.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 800px;
+  
+  }
+
+  /* ─── SECTION POURQUOI NOUS ─── */
+.image-section {
+  background-image: none;
+  background-color: #0a0a0a;
+  height: auto;
+  margin-top: -100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-section__img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+}

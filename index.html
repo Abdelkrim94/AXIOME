@@ -15,38 +15,44 @@
  
     <!-- NAVBAR -->
     <nav class="navbar">
- 
-      <a href="#" class="navbar__logo">
-  <img src="./PHOTO/Capture d'écran 2026-04-13 150748.png" class="navbar__logo-icon" alt="Axiom logo" />
-</a>
-        
- 
-      <ul class="navbar__links">
-        <li><a href="#accueil">ACCEUIL</a></li>
-        <li><a href="#pourquoi-nous">POURQUOI NOUS ?</a></li>
-        <li><a href="#reassurance">REASSURANCE </a></li>
-        <li><a href="#inscription">INSCRIPTION</a></li>
-      </ul>
- 
-    </nav>
+  <a href="#" class="navbar__logo">
+    <img src="./PHOTO/Capture d'écran 2026-04-13 150748.png" class="navbar__logo-icon" alt="Axiom logo" />
+  </a>
+
+  <!-- Bouton burger -->
+  <button class="navbar__burger" id="burgerBtn" aria-label="Menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <ul class="navbar__links" id="navLinks">
+    <li><a href="#accueil">ACCEUIL</a></li>
+    <li><a href="#pourquoi-nous">POURQUOI NOUS ?</a></li>
+    <li><a href="#reassurance">REASSURANCE</a></li>
+    <li><a href="#inscription">INSCRIPTION</a></li>
+  </ul>
+</nav>
  
     <!-- CONTENU CENTRAL -->
     <div class="hero__content">
       <h1 class="hero__title">AXIOM</h1>
       <p class="hero__quote">"veritas nihil nisi veritas"</p>
       <p class="hero__subtitle">
-        Ne lisez plus dans l'incertitude mais dans un<br />
+        Ne lisez plus dans l'incertitude mais dans un<br/>
         flux de connaissances véridique
       </p>
       <a href="#inscription" class="hero__cta">RECEVOIR VOTRE PDF</a>
     </div>
- 
   </section>
  
   <!-- ══════════════════ SECTION 3 — IMAGE PLEIN ÉCRAN ══════════════════ -->
-<section class="image-section" id="pourquoi-nous" ></section>
-<section class="img-section" id="reassurance"></section>
+<section class="image-section" id="pourquoi-nous">
+  <img src="./PHOTO/iPhone 17 - pk1.png" class="image-section__img" alt="" />
+  <img src="./PHOTO/iPhone 17 - pk2.png" class="image-section__img" alt="" />
+</section>
 
+<section class="img-section" id="reassurance"></section>
 
 <section class="form-section" id="inscription" >
     <div class="form-card">
@@ -82,5 +88,28 @@
   <p class="footer__legal">© 2025 Axiom. Tous droits réservés.</p>
 </footer>
  
+
+
+
+
+<script>
+  const burger = document.getElementById('burgerBtn');
+  const links = document.getElementById('navLinks');
+
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    links.classList.toggle('open');
+  });
+
+  // Ferme le menu au clic sur un lien
+  links.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      burger.classList.remove('open');
+      links.classList.remove('open');
+    });
+  });
+</script>
+
+
 </body>
 </html>

@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Josefin+Sans:wght@100;200;300&display=swap" rel="stylesheet" />
+  </head>
   <body>
  
   <!-- ══════════════════ SECTION 1 — HERO ══════════════════ -->
@@ -77,8 +78,6 @@
     </div>
   </section>
 
-
-
 <!-- ══════════════════ FOOTER ══════════════════ -->
 <footer class="footer">
   <a href="#" class="footer__logo">
@@ -88,28 +87,119 @@
   <p class="footer__legal">© 2025 Axiom. Tous droits réservés.</p>
 </footer>
  
-
-
-
+<!-- ══════════════════ POPUP INSCRIPTION ══════════════════ -->
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup">
+    <button class="popup__close" id="popupClose" aria-label="Fermer">&times;</button>
+    <h3 class="popup__title">Merci pour votre inscription</h3>
+    <p class="popup__text">
+      Vous recevrez bientôt votre PDF par mail.<br>
+      Pensez à vérifier votre boîte de réception ainsi que vos spams.
+    </p>
+    <button class="popup__button" id="popupBtn">FERMER</button>
+  </div>
+</div>
 
 <script>
+
   const burger = document.getElementById('burgerBtn');
   const links = document.getElementById('navLinks');
+  const nav = document.querySelector('.navbar');
 
   burger.addEventListener('click', () => {
     burger.classList.toggle('open');
     links.classList.toggle('open');
+    nav.classList.toggle('menu-active');
   });
 
-  // Ferme le menu au clic sur un lien
-  links.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
+  // Navigation menu mobile + desktop
+  document.querySelectorAll('.navbar__links a').forEach(link => {
+    link.addEventListener('click', function () {
+      // On ferme le menu quand un lien est cliqué
       burger.classList.remove('open');
       links.classList.remove('open');
+      nav.classList.remove('menu-active');
+    });
+
+    link.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href');
+      if (!targetId || !targetId.startsWith('#')) return;
+      e.preventDefault();
+      const target = document.querySelector(targetId);
+      if (!target) return;
+
+      // Ferme le menu
+      burger.classList.remove('open');
+      links.classList.remove('open');
+      nav.classList.remove('menu-active');
+
+      // Petit délai pour laisser le menu se fermer
+      setTimeout(() => {
+        const navHeight = nav.offsetHeight;
+        const targetTop = target.getBoundingClientRect().top + window.scrollY - navHeight;
+
+        window.scrollTo({
+          top: targetTop,
+          behavior: 'smooth'
+        });
+      }, 100);
     });
   });
-</script>
 
+  // ─── POPUP INSCRIPTION ───
+  const inscriptionBtn = document.querySelector('.form-cta');
+  const popupOverlay = document.getElementById('popupOverlay');
+  const popupClose = document.getElementById('popupClose');
+  const popupBtn = document.getElementById('popupBtn');
+
+  const nom = document.getElementById('nom');
+  const prenom = document.getElementById('prenom');
+  const email = document.getElementById('email');
+
+  function openPopup() {
+    popupOverlay.classList.add('active');
+    document.body.classList.add('no-scroll');
+  }
+
+  function closePopup() {
+    popupOverlay.classList.remove('active');
+    document.body.classList.remove('no-scroll');
+  }
+
+  if (inscriptionBtn) {
+    inscriptionBtn.addEventListener('click', () => {
+      if (
+        nom.value.trim() !== '' &&
+        prenom.value.trim() !== '' &&
+        email.value.trim() !== ''
+      ) {
+        openPopup();
+        nom.value = '';
+        prenom.value = '';
+        email.value = '';
+      } else {
+        alert('Veuillez remplir tous les champs avant de vous inscrire.');
+      }
+    });
+  }
+
+  if (popupClose) popupClose.addEventListener('click', closePopup);
+  if (popupBtn) popupBtn.addEventListener('click', closePopup);
+  if (popupOverlay) {
+    popupOverlay.addEventListener('click', (e) => {
+      if (e.target === popupOverlay) {
+        closePopup();
+      }
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closePopup();
+    }
+  });
+
+</script>
 
 </body>
 </html>

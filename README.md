@@ -6,14 +6,12 @@
 
 ## Structure du projet
 
-```
 axiom/
 ├── index.html
 ├── style.css
 ├── FOND-AXIOME.jpeg          # Image de fond hero + form section
 ├── MacBook Air - 2.png       # Image plein écran (image-section)
 └── Capture d'écran 2026-04-13 150748.png  # Logo Axiom
-```
 
 ---
 
@@ -50,7 +48,7 @@ axiom/
 La navbar est fixe (`position: fixed`) avec un effet de verre (`backdrop-filter: blur`).  
 Les liens sont ancrés via les `id` des sections :
 
-```html
+html
 <a href="#accueil">ACCUEIL</a>
 <a href="#pourquoi-nous">POURQUOI NOUS ?</a>
 <a href="#reassurance">REASSURANCE</a>
@@ -78,7 +76,6 @@ Les fondus entre sections sont réalisés avec des pseudo-éléments CSS `::befo
 
 Ouvre simplement `index.html` dans un navigateur.  
 Aucune dépendance, aucun build requis — HTML/CSS pur.
-
 
 ---
 

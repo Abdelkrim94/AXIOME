@@ -167,16 +167,62 @@
   }
 
   if (inscriptionBtn) {
-    inscriptionBtn.addEventListener('click', () => {
-      if (
-        nom.value.trim() !== '' &&
-        prenom.value.trim() !== '' &&
-        email.value.trim() !== ''
-      ) {
-        openPopup();
-        nom.value = '';
-        prenom.value = '';
-        email.value = '';
+    // Ajout du mot-clé "async" pour pouvoir gérer l'envoi de données
+    inscriptionBtn.addEventListener('click', async () => {
+      
+      const nomValue = nom.value.trim();
+      const prenomValue = prenom.value.trim();
+      const emailValue = email.value.trim();
+
+      // 1. Vérification des champs
+      if (nomValue !== '' && prenomValue !== '' && emailValue !== '') {
+        
+        // 2. L'URL de ton Webhook (à remplacer par la vraie URL)
+        const webhookUrl = "https://hook.eu1.make.com/t7us2nruhw2gykcciefei9dlucmu1uaw";
+
+        // 3. Préparation des données au format JSON
+        const dataToSend = {
+          nom: nomValue,
+          prenom: prenomValue,
+          email: emailValue
+        };
+
+        try {
+          // Changer le texte du bouton pendant le chargement (optionnel mais recommandé)
+          inscriptionBtn.textContent = "ENVOI...";
+          inscriptionBtn.disabled = true;
+
+          // 4. Envoi de la requête POST vers le webhook
+          const response = await fetch(webhookUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dataToSend)
+          });
+
+          // 5. Si le webhook a bien reçu les données (Status 200-299)
+          if (response.ok) {
+            openPopup(); // On affiche le message de succès
+            // On vide les champs
+            nom.value = '';
+            prenom.value = '';
+            email.value = '';
+          } else {
+            alert("Une erreur est survenue lors de l'envoi. Veuillez réessayer.");
+            console.error("Erreur Webhook:", response.status);
+          }
+
+        } catch (error) {
+          // Gestion des erreurs de connexion (pas de wifi, bloqueur de pub, etc.)
+          console.error("Erreur réseau:", error);
+          alert("Impossible de se connecter au serveur.");
+        } finally {
+           // On remet le bouton à son état initial
+           inscriptionBtn.textContent = "INSCRIPTION";
+           inscriptionBtn.disabled = false;
+        }
+
       } else {
         alert('Veuillez remplir tous les champs avant de vous inscrire.');
       }
